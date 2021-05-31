@@ -1,0 +1,31 @@
+https://www.interviewbit.com/problems/profit-maximisation/
+
+
+int Solution::solve(vector<int> &A, int B) {
+
+    
+    
+    priority_queue<int>m;
+    for(int i=0;i<A.size();i++)
+    {
+        
+        m.push(A[i]);
+        
+        
+    } int temp=0;
+    int sum=0;
+    while(B--)
+    {
+        sum+=m.top();
+        temp=m.top();
+        m.pop();
+        m.push(temp-1);
+        
+        
+        
+    }
+    return sum;
+    
+    
+    
+}
