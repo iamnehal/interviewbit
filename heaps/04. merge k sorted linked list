@@ -1,0 +1,53 @@
+1. generral approach for any k linked list (sorted or unsorted) 
+
+ class comp {
+    public :  bool operator()( ListNode* a , ListNode* b) {
+
+        
+         if(b==NULL)return false;
+      
+      return (a->val>b->val);
+    }
+};
+
+// priority queue main class banana hota hai agar comapre karne main kuch change karna ho to
+ 
+ 
+
+ListNode* Solution::mergeKLists(vector<ListNode*> &A) {
+  
+  
+
+  
+  
+priority_queue<ListNode*,vector<ListNode*>,comp>m;
+ListNode* node=NULL; //yeh declaration improtantt hai 
+for(int i=0;i<A.size();i++)
+{
+    node=A[i];
+    
+    while(node!=NULL)
+    {
+        m.push(node);
+        node=node->next;
+    }
+    
+    
+    
+}
+ListNode* ans=m.top();
+node=m.top();
+m.pop();
+while(m.empty()==0)
+{
+    node->next=m.top();
+    m.pop();
+    node=node->next;
+    
+    
+}
+  return ans;
+  
+  
+  
+}
