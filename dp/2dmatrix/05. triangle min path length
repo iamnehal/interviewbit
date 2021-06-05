@@ -1,0 +1,32 @@
+int Solution::minimumTotal(vector<vector<int> > &A) {
+    int m=A.size();
+    
+    int dp[m][m];
+    int i,j;
+    
+    memset(dp,0,sizeof(dp));
+    
+    dp[0][0]=A[0][0];
+    int t1,t2;
+    t1=t2=INT_MAX-1;
+    for(i=1;i<m;i++)
+    {
+        for(j=0;j<=i;j++)
+        {
+            if(j<=i-1)t1=dp[i-1][j];
+            if(j-1>=0)t2=dp[i-1][j-1];
+            
+            dp[i][j]=min(t1,t2)+A[i][j];
+            t1=t2=INT_MAX-1;
+            
+        }
+        
+        
+    }
+    
+    for(j=0;j<m;j++)
+    t1=min(t1,dp[m-1][j]);
+    return t1;
+    
+    
+}
