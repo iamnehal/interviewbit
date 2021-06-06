@@ -5,6 +5,8 @@ int Solution::calculateMinimumHP(vector<vector<int> > &A) {
     
     //https://www.youtube.com/watch?v=4uUGxZXoR5o
     
+    https://www.youtube.com/watch?v=lSOsKhQc_VI
+    
     int dp[m][n];
     if(A[m-1][n-1]>0)dp[m-1][n-1]=0;
     else
