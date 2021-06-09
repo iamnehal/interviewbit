@@ -128,5 +128,68 @@ int Solution::minDistance(string A, string B) {
 
 
 
+int solve(string a,string b)
+{ 
+    int n=a.size();
+    int m=b.size();
+    
+    int dp[2][m+1];
+    memset(dp,0,sizeof(dp));
+    int i,j;
+    i=0;j=0;
+
+    
+    
+    int t1,t2,t3;
+    for(i=0;i<=n;i++)
+    {for(j=0;j<=m;j++)
+    { if(i==0)dp[0][j]=j;
+    else if(j==0)dp[i%2][j]=i;
+    else
+    {
+        
+        if(a[(i-1)]==b[j-1])
+        {
+            dp[i%2][j]=dp[(i+1)%2][j-1];
+            
+        }
+        else
+        {
+            //insertion
+            t1=dp[i%2][j-1]+1;
+            //deletion
+            t2=dp[(i+1)%2][j]+1;
+            //replacement
+            t3=dp[(i+1)%2][j-1]+1;
+            dp[i%2][j]=min(t1,min(t2,t3));//taking min
+            
+            
+        }
+    }
+        
+        
+    }
+        
+        
+        
+    }
+    
+    return dp[n%2][m];
+}
+
+
+
+int Solution::minDistance(string A, string B) {
+   int ans;
+    ans=solve(A,B);
+    return ans;
+    
+    
+}
+
+
+
+
+
 
 
