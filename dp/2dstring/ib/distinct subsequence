@@ -60,3 +60,76 @@ int Solution::numDistinct(string A, string B) {
     
     
 }
+
+
+soln2: solve it like aditya verma video on no of ways to get to sum (knapsack variations)
+
+int Solution::numDistinct(string a, string b) {
+    int m=a.size();
+    int n=b.size();
+    
+    int i,j;
+    int dp[m+1][n+1];
+    
+    
+    for(i=0;i<=m;i++)
+    {
+        dp[i][0]=1;
+        
+        
+    }
+    
+    for(j=0;j<=n;j++)
+    {
+        dp[0][j]=0;
+    }
+    dp[0][0]=1;
+    
+    
+    for(i=1;i<=m;i++)
+    {
+        
+        for(j=1;j<=n;j++)
+        {
+            
+            if(a[i-1]!=b[j-1])
+            {
+                dp[i][j]=dp[i-1][j];
+            
+            }
+            else
+            {int choice1=dp[i-1][j-1];//selection
+            int choice2=dp[i-1][j];//not selection
+        
+                dp[i][j]=choice1+choice2;
+                
+            }
+            
+            
+            
+            
+            
+        }
+    }
+    
+    return dp[m][n];
+    
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
