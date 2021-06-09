@@ -1,0 +1,74 @@
+method 1: see video of codebix on utube
+
+int dp[451][451];
+int solve(string a,string b)
+{ 
+    int n=a.length();
+    int m=b.length();
+    
+    
+    if(dp[n][m]!=-1)return dp[n][m];
+    if(a=="")
+    {
+        dp[n][m]=m;
+        return m;
+        
+        
+    }
+    if(b=="")
+    {
+        dp[n][m]=n;return n;
+    }
+    
+    if(a[0]==b[0])
+    {
+        dp[n][m]=solve(a.substr(1,n),b.substr(1,m));
+        return dp[n][m];
+        
+        
+        
+    }
+    
+    
+    else
+    {
+        
+        //insertion 
+        int t1=solve(a,b.substr(1,m));
+        //delete
+        
+        int t2=solve(a.substr(1,n),b);
+        
+        //replace
+        
+        int t3=solve(a.substr(1,n),b.substr(1,m));
+        
+        
+        dp[n][m]=1+min(t1,min(t2,t3));
+        return dp[n][m];
+        
+    }
+    
+    
+    
+    
+    
+}
+
+
+
+int Solution::minDistance(string A, string B) {
+    memset(dp,-1,sizeof(dp));
+    int ans=0;
+    ans=solve(A,B);
+    return ans;
+    
+    
+}
+
+
+
+
+
+
+
