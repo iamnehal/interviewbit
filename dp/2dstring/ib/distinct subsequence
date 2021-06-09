@@ -126,6 +126,72 @@ int Solution::numDistinct(string a, string b) {
 
 
 
+soln 3: space optimised
+int Solution::numDistinct(string a, string b) {
+    int m=a.size();
+    int n=b.size();
+    
+    int i,j;
+    int dp[2][n+1];
+    
+    
+    for(i=0;i<=m;i++)
+    {
+        dp[i%2][0]=1;
+        
+        
+    }
+    
+    for(j=0;j<=n;j++)
+    {
+        dp[0][j]=0;
+    }
+    dp[0][0]=1;
+    
+    
+    for(i=1;i<=m;i++)
+    {
+        
+        for(j=1;j<=n;j++)
+        {
+            if(i==0)
+            {dp[0][j]=1;
+                
+                
+            }
+            else if(j==0)dp[i%2][0]=0;
+            
+            
+            
+            
+            else if(a[i-1]!=b[j-1])
+            {
+                dp[i%2][j]=dp[(i+1)%2][j];
+            
+            }
+            else
+            {int choice1=dp[(i+1)%2][j-1];//selection
+            int choice2=dp[(i+1)%2][j];//not selection
+        
+                dp[i%2][j]=choice1+choice2;
+                
+            }
+            
+            
+            
+            
+            
+        }
+    }
+    
+    return dp[m%2][n];
+    
+    
+    
+    
+    
+    
+}
 
 
 
