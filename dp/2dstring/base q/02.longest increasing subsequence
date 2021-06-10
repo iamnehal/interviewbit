@@ -45,3 +45,70 @@ class Solution
        
     }
 };
+
+
+
+soln2: class Solution {
+public:
+    int dp[2501][2501];
+    
+    
+    int solve(vector<int>v,int prv,int cur)
+    {
+        
+        if(cur==v.size())return 0;
+        if(prv==INT_MIN+1)
+        {
+            return max( solve(v,cur,cur+1)+1,solve(v,prv,cur+1)           );
+            
+            
+            
+        }
+        
+        
+        if(dp[cur][prv]!=-1)return dp[cur][prv];
+        
+        if(v[cur]>v[prv])
+        {
+            
+            dp[cur][prv]=max( solve(v,cur,cur+1)+1,solve(v,prv,cur+1)           );
+            
+            
+            
+        }
+        else
+        {
+            dp[cur][prv]=solve(v,prv,cur+1);
+            
+            
+        }
+        return dp[cur][prv];
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    int lengthOfLIS(vector<int>& nums) {
+        
+        
+        memset(dp,-1,sizeof(dp));
+        int ans=solve(nums,INT_MIN+1,0);
+        return ans;
+        
+        
+    }
+};
