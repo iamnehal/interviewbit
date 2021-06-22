@@ -1,0 +1,62 @@
+
+Fastest
+Lightweight
+bool isPossible(int X,int Y,int N,int M){
+    if(X>=0 && X<N && Y>=0 && Y<M){
+        return true;
+    }
+    return false;
+}
+
+void dfs(vector<vector<int>> &A,vector<vector<bool>> &visited,int N,int M,int x,int y,int &ct){
+    
+    visited[x][y] = true;
+    ct++;
+    
+    if(isPossible(x+1,y,N,M)  && visited[x+1][y]==false && A[x+1][y]==1){
+        dfs(A,visited,N,M,x+1,y,ct);
+    }
+    if(isPossible(x-1,y,N,M)  && visited[x-1][y]==false && A[x-1][y]==1){
+        dfs(A,visited,N,M,x-1,y,ct);
+    }
+    if(isPossible(x,y+1,N,M)  && visited[x][y+1]==false && A[x][y+1]==1){
+        dfs(A,visited,N,M,x,y+1,ct);
+    }
+    if(isPossible(x,y-1,N,M)  && visited[x][y-1]==false && A[x][y-1]==1){
+        dfs(A,visited,N,M,x,y-1,ct);
+    }
+    if(isPossible(x+1,y+1,N,M)  && visited[x+1][y+1]==false && A[x+1][y+1]==1){
+        dfs(A,visited,N,M,x+1,y+1,ct);
+    }
+    if(isPossible(x-1,y-1,N,M)  && visited[x-1][y-1]==false && A[x-1][y-1]==1){
+        dfs(A,visited,N,M,x-1,y-1,ct);
+    }
+    if(isPossible(x+1,y-1,N,M)  && visited[x+1][y-1]==false && A[x+1][y-1]==1){
+        dfs(A,visited,N,M,x+1,y-1,ct);
+    }
+    if(isPossible(x-1,y+1,N,M)  && visited[x-1][y+1]==false && A[x-1][y+1]==1){
+        dfs(A,visited,N,M,x-1,y+1,ct);
+    }
+}
+
+int Solution::solve(vector<vector<int> > &A) {
+    int N = A.size();
+    int M = A[0].size();
+    
+    int ans=0;
+    vector<vector<bool>> visited(N ,vector<bool> (M, false));
+    
+    for(int i=0;i<N;++i){
+        for(int j=0;j<M;++j){
+            
+            if(visited[i][j] == false && A[i][j] == 1){
+                int ct=0;
+                
+                dfs(A,visited,N,M,i,j,ct);
+                
+                ans = max(ans, ct);
+            }
+        }
+    }
+    return ans;
+}
