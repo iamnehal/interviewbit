@@ -1,0 +1,75 @@
+int verify = 1;
+
+int  solve(TreeNode* A)
+{   if (verify == 0)return 0;
+    if (A == NULL)return 0;
+    int a1 = solve(A->left);
+    int a2 = solve(A->right);
+
+
+    if ( abs( a1 - a2  ) > 1)
+    {
+        verify = 0;
+        //return 0;
+
+    }
+    return max(a1, a2) + 1;
+
+
+
+}
+
+
+
+int Solution::isBalanced(TreeNode* A) {
+    verify = 1;
+    int temp = solve(A);
+    return verify;
+
+}
+
+
+
+**********************************************
+
+int solve(TreeNode* r, int *verify)
+{
+
+    if (r == NULL)return 0;
+    if (*(verify) == 0)return 0;
+    if (r->left == NULL)return ( 1 + solve(r->right, verify)                   );
+    if (r->right == NULL)return (  1 + solve(r->left, verify));
+
+
+
+
+
+
+    int lh = solve(r->left, verify);
+    int rh = solve(r->right, verify);
+
+    if (abs(lh - rh) > 1)
+    {
+        *verify = 0;
+
+    }
+    return (max(lh, rh) + 1);
+
+}
+
+
+
+
+int Solution::isBalanced(TreeNode* A) {
+
+
+
+
+    int verify = 1;
+    solve(A, &verify);
+    return verify;
+
+
+}
+
+
