@@ -32,4 +32,44 @@ return ans;
 
 }
 
+***************************
+void solve(int* ans,long long int num,TreeNode* root)
+ { int temp=*ans;
+     if(root==NULL) return;
+     num=(num*10%1003+root->val%1003)%1003;
+     if((root->left==NULL) && (root->right==NULL))
+     
+     {
+         (*ans)= ((temp)%1003+  num%1003 )%1003;
+         return;
+     }
+solve(ans,num,root->left);
+solve(ans,num,root->right);
+  
+     
+     return ;
+         
+         
+     }
+     
+ 
+    
+    
+ 
+int Solution::sumNumbers(TreeNode* root) {
+    
+        
+       
+     
+ 
+
+ int ans=0;
+ long long int num=0;
+ solve(&ans,num,root);
+    return ans;
+}
+
+        
+   
+
 
