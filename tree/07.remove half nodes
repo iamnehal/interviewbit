@@ -1,0 +1,28 @@
+
+
+
+
+TreeNode* solve(TreeNode* r)
+{
+
+if(r==NULL)return r;
+if(!(r->left||r->right))return r;
+
+
+if(r->left==NULL){r=solve(r->right);
+return r;
+
+}
+
+
+if(r->right==NULL)
+{
+    r= solve(r->left);
+return r;
+}
+
+r->left=solve(r->left);
+r->right=solve(r->right);
+return r;
+
+}
