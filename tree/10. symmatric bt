@@ -1,0 +1,44 @@
+
+ 
+ int solve(TreeNode* A,TreeNode*B)
+ {
+     if(A==NULL && B==NULL)return 1;
+     if(A==NULL)return 0;
+     if(B==NULL)return 0;
+     if(A->val!=B->val)return 0;
+     
+     if(( solve(A->left,B->right)==0         ))return 0;
+     if((solve(A->right,B->left)   )==0)return 0;
+     return 1;
+     
+     
+ }
+ 
+ 
+int Solution::isSymmetric(TreeNode* A) {
+    
+    int ans=solve(A->left,A->right);
+    return ans;
+    
+    
+    
+}
+
+int solve(TreeNode* a,TreeNode* b)
+{
+
+if(a==NULL && b==NULL)return 1;
+if(a==NULL)return 0;
+if(b==NULL)return 0;
+if(a->val!=b->val)return 0;
+
+return ( solve(a->right,b->left)&& solve(a->left,b->right)                    );
+
+
+}
+
+int Solution::isSymmetric(TreeNode* A) {
+
+return solve(A->left,A->right);
+
+}
