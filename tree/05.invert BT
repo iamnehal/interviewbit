@@ -1,0 +1,34 @@
+SOLN 1: 
+
+TreeNode* solve(TreeNode* r)
+{
+if(r==NULL)return r;
+
+if(!(r->left||r->right))
+{
+
+return r;
+
+}
+
+TreeNode* temp=r->left;
+r->left=    solve(r->right);
+r->right=solve(temp);
+return r;
+
+SOLN 2: *************************************************************************
+TreeNode* Solution::invertTree(TreeNode* root) {
+    
+    if(root==NULL)return root;
+    TreeNode* temp;
+    { temp=root->left;
+    root->left=invertTree(root->right);
+    root->right=invertTree(temp);
+        
+        
+        
+    }
+    return root;
+    
+    
+}
