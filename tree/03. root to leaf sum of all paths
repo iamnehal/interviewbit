@@ -1,0 +1,35 @@
+attempt 1: 
+
+
+void solve(TreeNode* r,int *ans,int sum)
+{ //sum is getting passed by value
+//ans is passed by reference
+
+if(r==NULL)return ;
+sum= ((sum*10)%1003+(r->val)%1003)%1003;
+//sum has to be calculated in every path 
+//if we reached end pt then add sum to ans ..
+if(r->left==NULL && r->right==NULL)
+{
+    *(ans)=*ans+sum;
+    return ;
+
+}  
+//solve for right 
+
+
+   solve(r->right,ans,sum);
+//solve for left
+    solve(r->left,ans,sum);
+
+}
+
+int Solution::sumNumbers(TreeNode* A) {
+int ans=0;
+int sum=0;
+solve(A,&ans,sum);
+return ans;
+
+}
+
+
