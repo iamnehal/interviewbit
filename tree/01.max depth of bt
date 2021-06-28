@@ -1,0 +1,21 @@
+https://www.interviewbit.com/problems/max-depth-of-binary-tree/
+
+queue<TreeNode*>q;
+int count=0;
+if(r==NULL)return count;
+q.push(r);
+while(q.size())
+{
+
+int size=q.size();
+while(size--)
+{
+
+r=q.front();
+q.pop();
+if left
+if right
+}
+count++;
+
+}
