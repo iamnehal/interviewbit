@@ -1,0 +1,20 @@
+
+int solve(TreeNode* r)
+{
+
+if(r==NULL)return 0;
+
+if(r->left==NULL)return (solve(r->right)+1);
+if(r->right==NULL)return (solve(r->left)+1);
+return min(solve(r->left),solve(r->right))+1;
+
+
+
+
+    
+}
+
+int Solution::minDepth(TreeNode* r) {
+
+   return solve(r);
+}
