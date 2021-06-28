@@ -1,0 +1,71 @@
+soln 1: void solve(TreeNode* r,vector<vector<int>>&v,vector<int>temp,int x,int sum)
+{
+
+if(r==NULL)return ;
+
+temp.push_back(r->val);
+sum+=r->val;
+if(!(r->left||r->right))
+{
+
+if(sum==x)
+{
+    v.push_back(temp);
+
+}
+
+    return ;
+}
+
+solve(r->left,v,temp,x,sum);
+solve(r->right,v,temp,x,sum);
+
+
+
+}
+
+
+vector<vector<int> > Solution::pathSum(TreeNode* A, int B) {
+int sum=0;
+vector<vector<int>>v;
+vector<int>a;
+solve(A,v,a,B,sum);
+return v;
+
+}
+
+
+
+solm 2:
+void solve( TreeNode* root,int b,vector<vector<int>>&v,vector<int>va,int sum  )
+ {
+     if(root==NULL)return ;
+     va.push_back(root->val);
+     //sum=sum+root->val;
+     
+     if((root->left==NULL) && (root->right==NULL))
+     {
+         if(root->val==b)
+         v.push_back(va);
+         
+         
+     }
+     
+     solve( root->left,b-root->val,v,va,sum  );
+     solve(root->right,b-root->val,v,va,sum);
+     
+     
+     return;
+     
+ }
+ 
+vector<vector<int> > Solution::pathSum(TreeNode* root, int b) {
+    vector<vector<int>>v;
+    vector<int>va;
+    int sum=0;
+    solve(root,b,v,va,sum);
+    return v;
+    
+    
+    
+}
