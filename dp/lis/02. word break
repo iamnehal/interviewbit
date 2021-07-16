@@ -1,0 +1,44 @@
+https://github.com/iamnehal/coding/blob/main/greedy/2.activity%20selection%20IMP
+
+
+https://www.interviewbit.com/problems/chain-of-pairs/
+
+
+bool comp(const vector<int>a,const vector<int>b)
+{
+    
+    return a[1]<b[1];
+    
+}
+
+
+class Solution {
+public:
+    int findLongestChain(vector<vector<int>>& pairs) {
+        int n=pairs.size();
+        sort(pairs.begin(),pairs.end(),comp);
+        int dp[n];
+        for(int i=0;i<n;i++)dp[i]=1;
+        
+    int i,j;
+      
+        for(i=0;i<n-1;i++)
+        {
+            
+            for(j=i+1;j<n;j++)
+            {
+                
+                if(pairs[i][1]<pairs[j][0] && dp[i]>=dp[j])
+                    dp[j]=dp[i]+1;
+                
+                
+                
+                
+            }
+        }
+        int ans=0;
+        for(i=0;i<n;i++)
+        ans=max(ans,dp[i]);
+        return ans;
+    }
+};
