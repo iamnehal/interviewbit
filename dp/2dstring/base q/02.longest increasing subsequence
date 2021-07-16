@@ -112,3 +112,43 @@ public:
         
     }
 };
+
+soln 3********************
+
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        
+        int dp[n];
+        for(int i=0;i<n;i++)dp[i]=1;
+        int maxans=1;
+        
+    int i,j;
+        for(i=0;i<n-1;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                
+                if(nums[j]>nums[i] &&  dp[i]>=dp[j])
+                {
+                    
+                    dp[j]=dp[i]+1;
+                    maxans=max(maxans,dp[j]);
+                }
+                
+                
+            }
+        }
+        
+        return maxans;
+        
+        
+        
+        
+        
+        
+        
+    }
+};
